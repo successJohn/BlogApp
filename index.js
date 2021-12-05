@@ -8,16 +8,16 @@ app.set("view engine", "ejs");
 app.use(express.static("Public"));
 
 app.get("/", (req,res)=>{
-    res.sendFile(path.join(__dirname, "./Public/index.html"))
+    res.render("index")
 })
 app.get("/about", (req,res)=>{
-    res.sendFile(path.join(__dirname, "./Public/about.html"))
+    res.render("about")
 })
 app.get("/contact", (req,res)=>{
-    res.sendFile(path.join(__dirname, "./Public/contact.html"))
+    res.render("contact")
 })
-app.get("/", (req,res)=>{
-    res.sendFile(path.join(__dirname, "./Public/index.html"))
+app.get("/post", (req,res)=>{
+    res.render("post")
 })
 
 app.listen(8080, ()=>{
