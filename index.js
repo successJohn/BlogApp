@@ -3,17 +3,19 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const ejs = require("ejs");
+const validateMiddleWare = require("./Middleware/middleware")
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const BlogPost = require("./models/blogpost");
 const fileUpload = require("express-fileupload");
 
 app.set("view engine", "ejs");
-
 app.use(express.static("Public"));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(fileUpload());
+app.use("/posts/store",validateMiddleWare);
+
 mongoose.connect("mongodb://localhost/blogDB", {useNewUrlParser: true})
 
 app.get("/", async(req,res)=>{
