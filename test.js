@@ -31,8 +31,13 @@ BlogPost.create({
 BlogPost.find({},(error, blogpost)=>{
     console.log(error, blogpost)
 })
-*/
+
 
 BlogPost.find({body:/once/}, (error, blogpost)=>{
     console.log(error, blogpost);
-})
+*/
+const blogp = BlogPost.findById("61b4a401370c4b41d960ed5d",(error, blogpost)=>{
+    console.log(error,blogpost)
+});
+
+console.log(blogp);
