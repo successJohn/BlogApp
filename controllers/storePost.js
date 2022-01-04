@@ -9,7 +9,9 @@ module.exports =  async(req,res)=>{
     image.mv(path.resolve(__dirname, "Public/assets/img", image.name),async (error)=>{
       await BlogPost.create({
           ...req.body,
-          image: "/img/" + image.name})
+          image: "/img/" + image.name,
+            userid: req.session.userId
+        })
           res.redirect("/");
       });
 }

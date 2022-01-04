@@ -14,8 +14,9 @@ const newUserController = require("./controllers/newUser");
 const storeUserController = require("./controllers/storeUser");
 const loginController = require("./controllers/login");
 const loginUserController = require("./controllers/loginUser");
-const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware')
+const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticated')
 const logoutController = require("./controllers/logout");
+
 app.set("view engine", "ejs");
 app.use(express.static("Public"));
 
@@ -46,7 +47,6 @@ app.get("/contact", (req,res)=>{
 
 app.get("/post/:id",getPostController);
 
-app.get("/auth/logout", logoutController);
 app.get("/posts/new",validateMiddleWare, newPostController);
 
 app.get("/auth/register", redirectIfAuthenticatedMiddleware,newUserController);
@@ -55,6 +55,8 @@ app.post("/posts/store",validateMiddleWare, storePostController);
 app.get('/auth/login', redirectIfAuthenticatedMiddleware,loginController);
 app.post('/users/register', redirectIfAuthenticatedMiddleware,storeUserController)
 app.post('/users/login', redirectIfAuthenticatedMiddleware,loginUserController)
+app.get("/auth/logout", logoutController);
+//app.use((req, res) => res.render('notfound'));
 app.listen(4080, ()=>{
     console.log("server listening")
 })
